@@ -1,36 +1,18 @@
-import { useEffect, useState } from 'react';
-import { getCurrentRatings } from './api';
-import './App.css';
-import Currency from './components/Currency';
-import Header from './components/Header';
+import {  BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CurrencyHistory from './pages/CurrencyHistory';
+import Home from './pages/Home';
 
 function App() {
-  const [currencies, setCurrencies] = useState([]);
-
-  useEffect(()=>{
-    const getRatings = async () => {
-         try {
-          const currencyList =  await getCurrentRatings();
-          setCurrencies(Object.values(currencyList.Valute));
-          const l = currencyList;
-          console.log('List: ', Object.entries(l.Valute));
-        }
-         catch (error) {
-        }
-      }
-      getRatings();    
-  },[]);
-
-
   return (
     <div className="App">
-      <Header />
-      <ul>
-      {
-        currencies && currencies.map((currency) => <li><Currency  currency={currency}/></li>)
-      }
-     
-      </ul>
+    
+      <Router>
+        <Routes>
+          <Route path='/' element = {<Home />}/>
+          <Route path='/currency/:charCode' element = {<CurrencyHistory />}/>
+        </Routes>
+      </Router>
+  
     </div>
   );
 }
