@@ -6,8 +6,20 @@ const CurrencyLink = styled(Link)`
   text-decoration: none;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 5px 0;
 `
+
+const CurrencyCode = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  height: 1.5rem;
+  box-shadow: 0 0 3px 3px #ccc;
+  margin-right: 1rem;
+`;
 
 const Trend = styled.div`
   font-weight: 700;
@@ -27,7 +39,12 @@ function checkTrend(current, previous) {
 
 const Currency = ({currency}) => {
   return (<CurrencyLink to={`currency/${currency.CharCode}`}>
-            <div>{currency.CharCode}</div>
+            <CurrencyCode>
+              <Image src={currency.CharCode==='XDR' ? 'https://valuta.exchange/img/flags/xdr-flag.png':`https://github.com/transferwise/currency-flags/blob/master/src/flags/${currency.CharCode.toLowerCase()}.png?raw=true`} />
+              {currency.CharCode}
+            </CurrencyCode>
+            
+            
             <div>{currency.Value.toFixed(4)}</div> 
             <Trend trend={checkTrend(currency.Value, currency.Previous)}>
               {checkTrend(currency.Value, currency.Previous )}%
