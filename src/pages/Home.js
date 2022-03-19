@@ -27,11 +27,10 @@ const ListItem = styled.li`
   &:hover{
     border: 1px solid #999;
     box-shadow: 0 0 2px 2px #ccc;
-    border-radius: 5px;
+    border-radius: 3px;
   }
   padding: 0.5rem;
-  // display: flex;
-  // justify-content: space-between;
+
 `;
 const Home = () => {
   const [currencies, setCurrencies] = useState(null);
@@ -48,7 +47,10 @@ const Home = () => {
       getRatings();    
   },[]);
 
-
+  const showToolTip = (event, name) => {
+    console.log('Name: ',event.pageX, event.pageY,  name)
+  }
+  
   return (<>
   
       <Header title='Курсы валют Центрального Банка РФ' subtitle={`на ${currencies?.date} г. `}/>
@@ -60,8 +62,14 @@ const Home = () => {
          </ListTitle>
          
       {
-        currencies && currencies.rates.map((currency) => <ListItem key={currency.ID}>
-            <Currency  currency={currency} date={currencies.Date} previousDate = {currencies.PreviousDate} previousURL = {currencies.PreviousURL}/>
+        currencies && currencies.rates.map((currency) => <ListItem key={currency.ID } showToolTip={showToolTip}>
+            <Currency  
+              currency={currency} 
+              date={currencies.Date} 
+              previousDate = {currencies.PreviousDate} 
+              previousURL = {currencies.PreviousURL}
+                
+            />
           </ListItem>)
       }
      
