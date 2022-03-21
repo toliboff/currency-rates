@@ -9,6 +9,7 @@ const List = styled.ul`
   padding: 0;
   margin: 6rem auto 0;
   width: 50%;
+  position: relative;
 `;
 
 const Title = styled.span`
@@ -32,8 +33,24 @@ const ListItem = styled.li`
   padding: 0.5rem;
 
 `;
+const Tooltip = styled.div`
+  border: 1px solid #ccc;
+  padding: 5px;
+  position: absolute;
+  left:${params=>params.xPosition}px;
+  top:${params=>params.yPosition}px;
+  z-index: 999;
+  background-color: #fff;
+`;
+
 const Home = () => {
   const [currencies, setCurrencies] = useState(null);
+  const [tooltip, setTooltip] = useState({
+    show: true,
+    xPosition:0,
+    yPosition:0,
+    text:'',
+  });
 
   useEffect(()=>{
     const getRatings = async () => {
@@ -47,13 +64,14 @@ const Home = () => {
       getRatings();    
   },[]);
 
-  const showToolTip = (event, name) => {
-    console.log('Name: ',event.pageX, event.pageY,  name)
+  const handleToolTip = (event, name) => {
+    console.log('Name: ', event.pageX, event.pageY,  name)
+    setTooltip({...tooltip, yPosition: event.screenY, xPosition: event.screenY, text: name})
   }
-  
+
   return (<>
   
-      <Header title='Курсы валют Центрального Банка РФ' subtitle={`на ${currencies?.date} г. `}/>
+      {/* <Header title='Курсы валют Центрального Банка РФ' subtitle={`на ${currencies?.date} г. `}/> */}
        <List>
          <ListTitle> 
            <Title>Валюта</Title>
@@ -62,18 +80,19 @@ const Home = () => {
          </ListTitle>
          
       {
-        currencies && currencies.rates.map((currency) => <ListItem key={currency.ID } showToolTip={showToolTip}>
+        currencies && currencies.rates.map((currency) => <ListItem key={currency.ID } >
             <Currency  
               currency={currency} 
               date={currencies.Date} 
               previousDate = {currencies.PreviousDate} 
               previousURL = {currencies.PreviousURL}
-                
+              showToolTip={handleToolTip}
             />
           </ListItem>)
       }
-     
+      <Tooltip yPosition = {tooltip.yPosition} xPosition = {tooltip.xPosition}>{tooltip.text}</Tooltip>
       </List>
+     
 </>
   );
 }
