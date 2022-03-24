@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import styled from 'styled-components';
 import { getDailyRatings } from '../api';
@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const Table = styled.table`
   width: 80%;
-  margin: 6rem auto;
+  margin: 1rem auto;
   cell-padding:0;
   border-spacing:0;
   border: none;
@@ -46,6 +46,21 @@ const Difference = styled.span`
   color: ${params=>params.trend && params.trend === 'up' ? 'green' : 'red'};
 `;
 
+const BackButton = styled.button`
+  color: blue;
+  margin-top: 6rem;
+  margin-left: 8rem;
+  cursor:pointer;
+  color: #fff;
+  background-color: hsl(194deg 96% 42%);
+  border:none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  &:hover{
+    background-color:hsl(194deg 96% 52%);
+  }
+`;
+
 
 const CurrencyHistory = () => {
   const params = useParams();
@@ -67,7 +82,9 @@ const CurrencyHistory = () => {
   return ( 
     <Container>
       <Header title='Динамика курса за 10 дней' subtitle = { `${currency[0]?.rate.Nominal} ${currency[0]?.rate.CharCode} (${currency[0]?.rate.Name}) `}/>
-      ДИНАМИКА КУРСА
+      <Link to='/'>
+        <BackButton>Назад</BackButton>
+      </Link>
       <Table>
         <TableHead>
         <TableRow>

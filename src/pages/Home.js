@@ -9,7 +9,6 @@ const List = styled.ul`
   padding: 0;
   margin: 6rem auto 0;
   width: 50%;
-  position: relative;
 `;
 
 const Title = styled.span`
@@ -30,7 +29,7 @@ const ListItem = styled.li`
     box-shadow: 0 0 2px 2px #ccc;
     border-radius: 3px;
   }
-  padding: 0.5rem;
+  
 
 `;
 const Tooltip = styled.div`
@@ -38,7 +37,8 @@ const Tooltip = styled.div`
   padding: 5px;
   position: absolute;
   left:${params=>params.xPosition}px;
-  top:${params=>params.yPosition}px;
+  top:${params=>params.yPosition-50}px;
+  display: ${params=> params.show? 'block': 'none'};
   z-index: 999;
   background-color: #fff;
 `;
@@ -46,7 +46,7 @@ const Tooltip = styled.div`
 const Home = () => {
   const [currencies, setCurrencies] = useState(null);
   const [tooltip, setTooltip] = useState({
-    show: true,
+    show: false,
     xPosition:0,
     yPosition:0,
     text:'',
@@ -56,7 +56,10 @@ const Home = () => {
     const getRatings = async () => {
          try {
           const currencyList =  await getCurrentRatings();
-          setCurrencies({date: new Intl.DateTimeFormat('RU').format(currencyList.date), rates: Object.values(currencyList.Valute)});
+          setCurrencies({
+            date: new Intl.DateTimeFormat('RU').format(currencyList.date),
+            rates: Object.values(currencyList.Valute),
+          });
         }
          catch (error) {
         }
@@ -64,14 +67,19 @@ const Home = () => {
       getRatings();    
   },[]);
 
-  const handleToolTip = (event, name) => {
-    console.log('Name: ', event.pageX, event.pageY,  name)
-    setTooltip({...tooltip, yPosition: event.screenY, xPosition: event.screenY, text: name})
+  const handleToolTip = (event, name, show) => {
+    setTooltip({
+      ...tooltip, 
+      yPosition: event.pageY, 
+      xPosition: event.clientX, 
+      text: name, 
+      show,
+    });
   }
 
   return (<>
   
-      {/* <Header title='Курсы валют Центрального Банка РФ' subtitle={`на ${currencies?.date} г. `}/> */}
+      <Header title='Курсы валют Центрального Банка РФ' subtitle={`на ${currencies?.date} г. `}/>
        <List>
          <ListTitle> 
            <Title>Валюта</Title>
@@ -90,7 +98,12 @@ const Home = () => {
             />
           </ListItem>)
       }
-      <Tooltip yPosition = {tooltip.yPosition} xPosition = {tooltip.xPosition}>{tooltip.text}</Tooltip>
+      <Tooltip 
+          yPosition = {tooltip.yPosition} 
+          xPosition = {tooltip.xPosition} 
+          show={tooltip.show}>
+        {tooltip.text}
+      </Tooltip>
       </List>
      
 </>
