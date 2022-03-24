@@ -75,9 +75,9 @@ const CurrencyHistory = () => {
        setCurrency(list)
       
     }
-    console.log(currency);
+
   fetchData();
-  },[])
+  },[currencyName])
 
   return ( 
     <Container>
