@@ -9,7 +9,7 @@
 
 Реализовать на ванильном JS либо React
 
-[Live demo](https://)
+[Live demo](https://ruchange.netlify.app/)
 # Использованные технологии
 
 - ReactJS
