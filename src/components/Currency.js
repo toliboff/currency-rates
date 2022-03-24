@@ -7,7 +7,7 @@ const CurrencyLink = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 0;
+  padding: 1rem 0.5rem;
 `
 
 const CurrencyCode = styled.div`
@@ -31,10 +31,10 @@ const Trend = styled.div`
 const Currency = ({currency, showToolTip}) => {
   function checkTrend(current, previous) {
     if (current > previous) {
-      return -((current-previous)/current*100).toFixed(2);
+      return -((current-previous) / current * 100).toFixed(2);
     }
     else if (current < previous) {
-      return ((previous-current)/previous*100).toFixed(2);
+      return ((previous-current) / previous * 100).toFixed(2);
     }
     else return 0;
   };
@@ -42,9 +42,10 @@ const Currency = ({currency, showToolTip}) => {
   return (<CurrencyLink 
             to={`currency/${currency.CharCode}` } 
             tooltip={currency.Name} 
-            onMouseEnter={(event)=>showToolTip(event, currency.Name)}>
+            onMouseEnter={(event)=>showToolTip(event, currency.Name, true)}
+            onMouseLeave={(event)=>showToolTip(event, currency.Name, false)}>
             <CurrencyCode>
-              <Image src={currency.CharCode==='XDR'
+              <Image src={currency.CharCode === 'XDR'
                 ? 'https://valuta.exchange/img/flags/xdr-flag.png'
                 : `https://github.com/transferwise/currency-flags/blob/master/src/flags/${currency.CharCode.toLowerCase()}.png?raw=true`} />
               {currency.CharCode}
