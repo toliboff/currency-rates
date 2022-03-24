@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Приложение для показа курсов валют по отношению к рублю 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![screenshot](1.png)
+![screenshot](2.png)
+## Техническое задание
+Используя API `https://www.cbr-xml-daily.ru/` вывести на страницу список курсов валют на текущий день. В третьей колонке вывести процентное изменение курса относительно предыдущего дня. Данные за предыдущий период можно брать по ссылке формата `https://www.cbr-xml-daily.ru/archive/2022/02/11/daily_json.js`. 
+Формат вывода - Код валюты, значение в рублях, разница в процентах в сравнении с предыдущим днем. Вывод в виде списка. При наведении на элемент списка он должен выделяться и под курсором должно отображаться полное название валюты в tooltip.
+При клике на элемент списка отображается список по данной валюте за 10 дней.
 
-## Available Scripts
+Реализовать на ванильном JS либо React
 
-In the project directory, you can run:
+[Live demo](https://)
+# Использованные технологии
 
-### `npm start`
+- ReactJS
+- Styled-components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Установка и запуск
+- Клонировать репозиторий
+- Перейти в корневой каталог
+- Запустить команду `npm install` для установки зависимостей
+- Запустить команду `npm start` для запуска приложения
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Автор
 
-### `npm run build`
+👤 **Tolib**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- GitHub: [@toliboff](https://github.com/toliboff)
+- Twitter: [@tolib_tolibov](https://twitter.com/tolib_tolibov)
+- LinkedIn: [Tolibjon Tolibov](https://linkedin.com/in/tolibjon-tolibov)
